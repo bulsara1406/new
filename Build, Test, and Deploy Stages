@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo '=== BUILD STAGE ==='
+                sh 'echo "Compiling source code..."'
+                sh 'echo "Running npm build or Maven compile..."'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo '=== TEST STAGE ==='
+                sh 'echo "Running unit tests..."'
+                sh 'echo "Running integration tests..."'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo '=== DEPLOY STAGE ==='
+                sh 'echo "Deploying to staging environment..."'
+                sh 'echo "Application deployed successfully!"'
+            }
+        }
+    }
+}
+Steps to Create:
+New Item → Pipeline-3-Stages → Pipeline → OK
+Paste code → Save → Build Now
+Verification: Check Stage View on job page for visual pipeline with 3 green boxes
