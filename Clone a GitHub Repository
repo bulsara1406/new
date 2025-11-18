@@ -1,16 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Clone Repository') {
+        stage('Clone Repo') {
             steps {
-                git branch: 'main', 
-                    url: 'https://github.com/jenkins-docs/simple-java-maven-app'
-                echo 'Repository cloned successfully'
-                sh 'ls -la'  // Lists cloned files
+                git branch: 'main', url: 'https://github.com/your-username/your-repo.git'
             }
         }
     }
 }
+
 
 Steps to Create:
 New Item → Name: Pipeline-2-Clone → Pipeline → OK
