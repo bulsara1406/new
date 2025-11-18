@@ -1,3 +1,4 @@
+----------------------example 1-------------------------------------
 pipeline {
     agent any
     tools {
@@ -34,3 +35,33 @@ pipeline {
         }
     }
 }
+
+----------------------------example 2---------------------------------
+pipeline {
+    agent any
+    
+    tools {
+        maven 'MAVEN3'
+        jdk 'JDK17'
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/your-username/java-maven-app.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+    }
+}
+
+Windows command alternative:
+Replace sh with bat
+
+bat 'mvn clean install'
+
