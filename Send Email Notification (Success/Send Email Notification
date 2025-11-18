@@ -1,0 +1,30 @@
+Prerequisites:
+Configure SMTP:
+Manage Jenkins → Configure System → Email Notification
+
+Example uses Gmail SMTP (enable App Password).
+--------------------------------------------------------------------------
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building project..."
+            }
+        }
+    }
+
+    post {
+        success {
+            mail to: 'someone@example.com',
+                 subject: "Jenkins Build SUCCESS",
+                 body: "Your Jenkins job completed successfully!"
+        }
+        failure {
+            mail to: 'someone@example.com',
+                 subject: "Jenkins Build FAILED",
+                 body: "Build failed. Please check logs."
+        }
+    }
+}
