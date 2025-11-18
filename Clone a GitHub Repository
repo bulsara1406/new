@@ -11,3 +11,13 @@ pipeline {
         }
     }
 }
+
+Steps to Create:
+New Item → Name: Pipeline-2-Clone → Pipeline → OK
+Use Pipeline script from SCM for production; for exam use direct script:
+Paste the code above → Save
+Click Build Now
+Verification: Console Output should show:
+Git clone commands
+List of files from the repository
+simple-java-maven-app content
