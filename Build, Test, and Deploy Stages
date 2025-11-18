@@ -1,3 +1,5 @@
+example  :1
+
 pipeline {
     agent any
     stages {
@@ -24,6 +26,36 @@ pipeline {
         }
     }
 }
+
+
+--------------------------------
+example : 2
+pipeline {
+    agent any
+    stages {
+
+        stage('Build') {
+            steps {
+                echo "Build started..."
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running test cases..."
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Deploying to server..."
+            }
+        }
+    }
+}
+
+
+
 Steps to Create:
 New Item → Pipeline-3-Stages → Pipeline → OK
 Paste code → Save → Build Now
