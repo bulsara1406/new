@@ -1,0 +1,42 @@
+Prerequisites:
+
+Install Docker Desktop
+
+Add DockerHub credentials in Jenkins:
+Manage Jenkins → Credentials → Username/Password
+ID: dockerhub
+------------------------------------------------------
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-username/docker-app.git'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t yourname/myapp:latest .'
+            }
+        }
+
+        stage('Docker Login & Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub',
+                                                 usernameVariable: 'USER',
+                                                 passwordVariable: 'PASS')]) {
+                    sh """
+                       echo "$PASS" | docker login -u "$USER" --password-stdin
+                       docker push yourname/myapp:latest
+                    """
+                }
+            }
+        }
+    }
+}
+------------------------------------------------
+
+Windows version use bat instead of sh.
