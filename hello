@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages {
+        stage('Greeting') {
+            steps {
+                echo 'Hello CI/CD'
+                echo 'Jenkins Pipeline is working!'
+            }
+        }
+    }
+}
+
+Steps to Create:
+Dashboard → New Item → Name: Pipeline-1-Hello → Select Pipeline → OK
+Scroll to Pipeline section → Select "Pipeline script"
+Paste the code above → Save
+Click Build Now
+Verification: Open build #1 → Console Output should show both echo messages
