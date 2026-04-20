@@ -36,3 +36,31 @@ df = pd.read_sql_query("SELECT * FROM users", conn)
 print(df.describe())
 
 conn.close()
+
+
+#mongodb
+
+from pymongo import MongoClient
+import pandas as pd
+
+client = MongoClient("mongodb://localhost:27017/")
+db = client["mydatabase"]
+collection = db["users"]
+
+# Insert
+collection.insert_one({"name": "John", "age": 25})
+print("Data inserted successfully!")
+
+# Read and print raw data
+for doc in collection.find():
+    print(doc)
+
+# Convert to DataFrame
+data = list(collection.find())
+df = pd.DataFrame(data)
+
+# Remove _id column
+df.drop(columns=["_id"], inplace=True)
+
+print("\nDataFrame:")
+print(df)
